@@ -1,113 +1,24 @@
-function calcular() {
-    const loteSeleccionado = document.getElementById("lote").value;
-    const cuotas = parseInt(document.getElementById("cuotas").value);
+// Declaración de variables 
+let terrenos = []; 
 
-    let precioLote;
-    switch (loteSeleccionado) {
-        case "A1":
-        case "B1":
-            precioLote = 10000;
-            break;
-        case "A2":
-        case "A3":
-        case "B2":
-        case "B3":
-            precioLote = 9500;
-            break;
-        case "A4":
-        case "A5":
-        case "B4":
-        case "B5":
-            precioLote = 9000;
-            break;
-    }
-    const pagoInicial = parseFloat(document.getElementById("pago-inicial").value);
-    if (pagoInicial < 2500 || pagoInicial > precioLote) {
-        alert("El minimo p ingresar tiene q ser no menor a 2500usd.");
-        return;
-    }
+// prompts para capturar informacion
+function capturarInformacionTerreno() {
+    let terreno = {}; 
 
-    // Monto restante a pagar - pago inicial
-    const montoRestante = precioLote - pagoInicial;
+    // entradas
+    terreno.titulo = prompt("Ingrese un título para el terreno en venta, intenta ser persuasivo... puedes probar con Inmejorable ubicación, o Apto PH, o Preventa:");
+    terreno.descripcion = prompt("Ingrese la descripción del terreno, no olvide agregar superfice, servicios, cercanias, y si es barrio privado el monto de expensas:");
+    terreno.precio = parseFloat(prompt("Ingrese el precio del terreno en USD (solo debes colocar el valor en números):"));
 
-    // Monto de cada cuota + el total a pagar con intereses
-    let interes;
-    switch (cuotas) {
-        case 6:
-            interes = 6;
-            break;
-        case 12:
-            interes = 10;
-            break;
-        case 18:
-            interes = 15;
-            break;
-        case 24:
-            interes = 19;
-            break;
-        case 30:
-            interes = 26;
-            break;
-        case 36:
-            interes = 34;
-            break;
-    }
-
-    const montoPorInteres = montoRestante * (interes / 100);
-    const totalAPagar = montoRestante + montoPorInteres;
-    const montoCuota = totalAPagar / cuotas;
-
-    // Precio final = pago inicial + total a pagar (restante en cuotas)
-    const precioFinal = pagoInicial + totalAPagar;
-
-    // Resultados en la página
-    const resultadoDiv = document.getElementById("resultado");
-    resultadoDiv.innerHTML = `
-        <h2>Resultado:</h2>
-        <p>Precio del lote: $${precioLote.toFixed(2)}</p>
-        <p>Pago inicial: $${pagoInicial.toFixed(2)}</p>
-        <p>Monto restante a pagar: $${montoRestante.toFixed(2)}</p>
-        <p>Cantidad de cuotas: ${cuotas}</p>
-        <p>Interés aplicado: ${interes}%</p>
-        <p>Monto de cada cuota: $${montoCuota.toFixed(2)}</p>
-        <p>Precio final: $${precioFinal.toFixed(2)}</p>
-    `;
+    return terreno;
 }
 
-function actualizarOpcionesPagoInicial() {
-    const loteSeleccionado = document.getElementById("lote").value;
-    let precioLote;
+// Función para publicar y capturar la info
+function publicarTerreno() {
+    let nuevoTerreno = capturarInformacionTerreno(); 
 
-    // Asignamos el precio del lote según la opción seleccionada
-    switch (loteSeleccionado) {
-        case "A1":
-        case "B1":
-            precioLote = 10000;
-            break;
-        case "A2":
-        case "A3":
-        case "B2":
-        case "B3":
-            precioLote = 9500;
-            break;
-        case "A4":
-        case "A5":
-        case "B4":
-        case "B5":
-            precioLote = 9000;
-            break;
-    }
-
-    // Generamos las opciones del desplegable
-    const pagoInicialSelect = document.getElementById("pago-inicial");
-    pagoInicialSelect.innerHTML = "";
-    for (let i = 2500; i <= precioLote - 500; i += 500) {
-        pagoInicialSelect.innerHTML += `<option value="${i}">${i}</option>`;
-    }
+    // Agregar el nuevo terreno al arreglo y mostrar en consola
+    terrenos.push(nuevoTerreno);
+    console.log("Terreno Publicado:");
+    console.log(nuevoTerreno);
 }
-
-// Llamamos a la función para actualizar las opciones del pago inicial cuando se cambia la opción del lote
-document.getElementById("lote").addEventListener("change", actualizarOpcionesPagoInicial);
-
-// Llamamos a la función inicialmente para que las opciones se carguen al abrir la página
-actualizarOpcionesPagoInicial();

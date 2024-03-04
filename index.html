@@ -4,54 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PreEntrega1+Vicencio</title>
+    <title>PreEntrega2+Vicencio</title>
 </head>
 
 <body>
-    <h1>Calculador de Cuotas</h1>
+    <h1>Venta de Terrenos</h1>
 
-    <p>Selecciona el terreno que te guste en base al sigueinte plano de mensura y calcula el valor final de tu terreno</p>
-    <img src="./images/mensura-lotes.png" alt="plano de mensura">
-    <br>
-    <form id="simulador-form">
-        <div>
-            <label for="lote">Lote:</label>
-            <select id="lote" name="lote">
-                <option value="A1">A1 ($10,000)</option>
-                <option value="A2">A2 ($9,500)</option>
-                <option value="A3">A3 ($9,500)</option>
-                <option value="A4">A4 ($9,000)</option>
-                <option value="A5">A5 ($9,000)</option>
-                <option value="B1">B1 ($10,000)</option>
-                <option value="B2">B2 ($9,500)</option>
-                <option value="B3">B3 ($9,500)</option>
-                <option value="B4">B4 ($9,000)</option>
-                <option value="B5">B5 ($9,000)</option>
-            </select>
-        </div>
-        <br>
-        <div>
-            <label for="pago-inicial">Pago Inicial (USD):</label>
-            <select id="pago-inicial" name="pago-inicial" required>
-            </select>
-        </div>
-        <br>
-        <div>
-            <label for="cuotas">Cuotas:</label>
-            <select id="cuotas" name="cuotas">
-                <option value="6">6 cuotas (6% de interés)</option>
-                <option value="12">12 cuotas (10% de interés)</option>
-                <option value="18">18 cuotas (15% de interés)</option>
-                <option value="24">24 cuotas (19% de interés)</option>
-                <option value="30">30 cuotas (26% de interés)</option>
-                <option value="36">36 cuotas (34% de interés)</option>
-            </select>
-        </div>
-        <br>
-        <button type="button" onclick="calcular()">Calcular</button>
-    </form>
-    <div id="resultado"></div>
+    <p>Hola inmobiliario! Para publicar tu terreno en venta, debes completar las siguientes ventanas. Una vez esté
+        completo puedes ver los terrenos publicados en la consola. Gracias!</p>
 
+    <button onclick="publicarTerreno()">Publicar Terreno</button>
 
     <script src="./js/main.js"></script>
 </body>
